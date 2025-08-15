@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.BluetoothScanner" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Usa Material 3 com suporte a tema escuro e claro -->
+        <item name="android:statusBarColor">@color/white</item> <!-- cor da barra de status -->
+
+    </style>
+
+    <style name="Theme.BluetoothScanner" parent="Base.Theme.BluetoothScanner" />
+</resources>
