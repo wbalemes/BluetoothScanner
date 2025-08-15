@@ -67,11 +67,12 @@ public class BluetoothScanService extends Service {
         return new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Bluetooth Scanner Service")
                 .setContentText("O serviço está buscando dispositivos a cada 60 segundos.")
+
                 .setSmallIcon(R.drawable.btscanner)
                 .setOngoing(true) // <- IMPEDIR REMOÇÃO DA NOTIFICAÇÃO android 13-
                 .setAutoCancel(false)
                 .setContentIntent(pendingIntent)
-                .setDeleteIntent(dismissPendingIntent) // <- Detecta quando o usuário descarta a notificação 14
+                .setDeleteIntent(dismissPendingIntent) // <- Detecta quando o usuário descarta a notificação android 14+
                 .build();
 
     }
