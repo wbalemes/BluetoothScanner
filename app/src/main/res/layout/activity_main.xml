@@ -1,49 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:orientation="vertical"
-    android:padding="16dp"
+<!-- fitsSystemWindows impede que o título fique sob a barra de notificações -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:windowBackground"
+    android:padding="16dp"
     android:fitsSystemWindows="true"
-    android:clipToPadding="false">
+    tools:context=".MainActivity">
 
+    <!-- Título -->
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bluetooth Scanner"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Área de Log (Scrollable) -->
     <ScrollView
-        android:layout_width="match_parent"
+        android:id="@+id/scrollLog"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp">
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="#11000000"
+        app:layout_constraintBottom_toTopOf="@+id/layoutInputs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle">
 
         <TextView
             android:id="@+id/logTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bluetooth Scanner iniciado."
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:lineSpacingExtra="4dp" />
+            android:padding="8dp"
+            android:text="Aguardando início..."
+            android:fontFamily="monospace" />
     </ScrollView>
 
+    <!-- Container para Input de Tempo -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/layoutInputs"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="12dp"
-        android:paddingBottom="0dp"> <!-- Espaço extra para evitar sobreposição -->
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/layoutButtons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/editScanTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Tempo (seg) - min 30"
+            android:inputType="number"
+            android:minHeight="48dp" />
+
+        <Button
+            android:id="@+id/btnUpdateScanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#3949AB"
+            android:textColor="#FFFFFF"
+            android:text="Atualizar" />
+    </LinearLayout>
+
+    <!-- Container de Botões principais -->
+    <LinearLayout
+        android:id="@+id/layoutButtons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btnStartService"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Iniciar Serviço" />
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="#43A047"
+            android:textColor="#FFFFFF"
+            android:text="Iniciar" />
+
         <Button
             android:id="@+id/btnStopService"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Parar Serviço"
-            android:layout_marginStart="16dp" />
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="#E53935"
+            android:textColor="#FFFFFF"
+            android:text="Parar" />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

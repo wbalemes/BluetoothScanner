@@ -30,6 +30,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -42,8 +43,8 @@
             android:name=".BluetoothScanService"
             android:foregroundServiceType="connectedDevice"/>
 
-        <receiver android:name=".NotificationDismissedReceiver"
-            android:exported="false"/>
+       <!-- <receiver android:name=".NotificationDismissedReceiver"
+            android:exported="false"/> -->
 
         <receiver android:name=".BootReceiver"
             android:exported="false">
