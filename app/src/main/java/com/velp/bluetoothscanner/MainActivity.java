@@ -82,23 +82,26 @@ public class MainActivity extends AppCompatActivity {
             String timeStr = editScanTime.getText().toString();
             if (!timeStr.isEmpty()) {
                 try {
-                // Converte segundos para milissegundos
-                int segundos = Integer.parseInt(timeStr);
-                int milissegundos = segundos * 1000;
+                    if (Integer.parseInt(timeStr) >= 30) {
+                        // Converte segundos para milissegundos
+                        int segundos = Integer.parseInt(timeStr);
+                        int milissegundos = segundos * 1000;
 
-                // Envia o novo tempo para o serviço sem precisar dar "stopService"
-                Intent intent = new Intent(this, BluetoothScanService.class);
-                intent.putExtra("NEW_INTERVAL", milissegundos);
+                        // Envia o novo tempo para o serviço sem precisar dar "stopService"
+                        Intent intent = new Intent(this, BluetoothScanService.class);
+                        intent.putExtra("NEW_INTERVAL", milissegundos);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(intent);
-                } else {
-                    startService(intent);
-                }
-
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            startForegroundService(intent);
+                        } else {
+                            startService(intent);
+                        }
+                        Toast.makeText(this, "Intervalo atualizado para " + segundos + "s", Toast.LENGTH_SHORT).show();
+                    } else {
+                        editScanTime.setError("Insira um tempo maior ou igual a 30 segundos");
+                    }
                 editScanTime.setText("");
 
-                Toast.makeText(this, "Intervalo atualizado para " + segundos + "s", Toast.LENGTH_SHORT).show();
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Insira um número válido", Toast.LENGTH_SHORT).show();
             }
